@@ -1,5 +1,6 @@
 *.kdev4
 *.o
 *~
-surf
+.kdev_include_paths
 bin/
+stuff.c
