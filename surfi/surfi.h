@@ -171,7 +171,7 @@ void surfi_client_set_callback_editing_began(SurfiClient *client,
 void surfi_client_set_callback_editing_ended(SurfiClient *client,
 	void(*callback)(SurfiClient *client));
 void surfi_client_set_callback_entering_fullscreen(SurfiClient *client,
-	void(*callback)(SurfiClient *client, WebKitDOMHTMLElement *element));
+	bool(*callback)(SurfiClient *client, WebKitDOMHTMLElement *element));
 void surfi_client_set_callback_frame_created(SurfiClient *client,
 	void(*callback)(SurfiClient *client, WebKitWebFrame *frame));
 void surfi_client_set_callback_geolocation_policy_decision_cancelled(SurfiClient *client,
