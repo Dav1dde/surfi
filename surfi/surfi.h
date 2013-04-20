@@ -127,6 +127,13 @@ bool surfi_poll(void);
 SurfiClient* surfi_client_new(int width, int height);
 
 /*
+ * Destroys a SurfiClient and frees the allocated memory.
+ * To avoid memory leaks this function has to be called!
+ *
+ */
+void surfi_client_free(SurfiClient *client);
+
+/*
  * Sets the size of the offscreen webview.
  *
  */

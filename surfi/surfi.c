@@ -49,6 +49,13 @@ SurfiClient* surfi_client_new(int width, int height)
 	return client;
 }
 
+void surfi_client_free(SurfiClient *client)
+{
+	gtk_widget_destroy(client->view);
+	gtk_widget_destroy(client->window);
+	free(client);
+}
+
 void surfi_client_set_size(SurfiClient *client, int width, int height)
 {
 	gtk_widget_set_size_request(client->view, width, height);
