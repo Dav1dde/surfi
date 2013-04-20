@@ -56,3 +56,8 @@ void surfi_client_set_userptr(SurfiClient *c, void *ptr)
 {
 	c->userptr = ptr;
 }
+
+void* surfi_client_get_userptr(SurfiClient* c)
+{
+	return c->userptr;
+}
