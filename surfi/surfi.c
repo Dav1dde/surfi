@@ -43,8 +43,10 @@ SurfiClient* surfi_client_new(int width, int height)
 {
 	SurfiClient *c;
 
-	if(!(c = calloc(1, sizeof(SurfiClient))))
+	if(!(c = calloc(1, sizeof(SurfiClient)))) {
 		error("Malloc failed");
+		return NULL;
+	}
 
 	c->window = gtk_offscreen_window_new();
 	c->view = webkit_web_view_new();
