@@ -7,52 +7,19 @@
 #include <gdk/gdk.h>
 #include <webkit/webkit.h>
 
-
-typedef struct SurfiClient {
-	GtkWidget *window;
-	GtkWidget *view;
-
-	void *userptr;
-} SurfiClient;
-
-// abcdefghijklmnopqrstuvqxyz
-
-// TODO:
-static void error(const char *errstr, ...);
-
-bool surfi_init(void);
-bool surfi_poll(void);
-
-SurfiClient* surfi_client_new(int width, int height);
-void surfi_client_set_size(SurfiClient *c, int width, int height);
-void surfi_client_set_userptr(SurfiClient *c, void *ptr);
+#include "surfi/surfi.h"
 
 
 static void error(const char *errstr, ...) {
 	//TODO
 }
 
-
-/*
- * Initializes surfi.
- * This is basically a call to gtk_init_check.
- *
- * RETURNS: true if call was succesful otherwise false
- *
- */
 bool surfi_init(void)
 {
 	return gtk_init_check(NULL, NULL);
 }
 
 
-/*
- * This updates everything related to surfi *and* gtk.
- * You can omit a call to surfi_poll if you're running
- * the gtk mainloop your own.
- *
- * RETURNS: true if there were events which needed processing, otherwise false
- */
 bool surfi_poll(void)
 {
 	if(gtk_events_pending()) {
@@ -63,12 +30,6 @@ bool surfi_poll(void)
 	return false;
 }
 
-
-/*
- * Initializes a new SurfiClient representing the offscreen webview.
- *
- * RETURNS: SurfiClient*
- */
 SurfiClient* surfi_client_new(int width, int height)
 {
 	SurfiClient *c;
@@ -85,20 +46,12 @@ SurfiClient* surfi_client_new(int width, int height)
 	return c;
 }
 
-/*
- * Sets the size of the offscreen webview.
- * 
- */
 void surfi_client_set_size(SurfiClient* c, int width, int height)
 {
 	gtk_widget_set_size_request(c->view, width, height);
 }
 
 
-/*
- * Set a userptr for a SurfiClient.
- *
- */
 void surfi_client_set_userptr(SurfiClient *c, void *ptr)
 {
 	c->userptr = ptr;
