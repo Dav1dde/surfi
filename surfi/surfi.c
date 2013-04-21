@@ -31,7 +31,7 @@ bool surfi_poll(void)
 	return false;
 }
 
-SurfiClient* surfi_client_new(int width, int height)
+SurfiClient* surfi_client_new(int width, int height, bool scroll)
 {
 	SurfiClient *client;
 
@@ -42,8 +42,22 @@ SurfiClient* surfi_client_new(int width, int height)
 
 	client->window = gtk_offscreen_window_new();
 	client->view = webkit_web_view_new();
-	gtk_widget_set_size_request(client->view, width, height);
-	gtk_container_add (GTK_CONTAINER(client->window), client->view);
+
+	//TODO when fixed, allow no scroll
+	if(scroll || true) {
+		client->scroll = gtk_scrolled_window_new(NULL, NULL);
+
+		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(client->scroll),
+									   GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+		gtk_container_add(GTK_CONTAINER(client->scroll), client->view);
+		gtk_container_add(GTK_CONTAINER(client->window), client->scroll);
+	} else {
+		//This is broken:
+		gtk_widget_set_size_request(client->view, width, height);
+		gtk_container_add(GTK_CONTAINER(client->window), client->view);
+	}
+
+	gtk_widget_grab_focus(client->view);
 	gtk_widget_show_all(client->window);
 
 	return client;
@@ -58,6 +72,7 @@ void surfi_client_free(SurfiClient *client)
 
 void surfi_client_set_size(SurfiClient *client, int width, int height)
 {
+	gtk_window_set_default_size(GTK_WINDOW(client->window), width, height);
 	gtk_widget_set_size_request(client->view, width, height);
 }
 

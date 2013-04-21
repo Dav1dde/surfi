@@ -127,7 +127,7 @@ bool surfi_poll(void);
  *
  * RETURNS: SurfiClient*
  */
-SurfiClient* surfi_client_new(int width, int height);
+SurfiClient* surfi_client_new(int width, int height, bool scroll);
 
 /*
  * Destroys a SurfiClient and frees the allocated memory.
