@@ -7,7 +7,6 @@
 #include "surfi/pixbuf.h"
 
 
-
 int surfi_pixbuf_get_bits_per_sample(Pixbuf* pixbuf)
 {
 	return gdk_pixbuf_get_bits_per_sample(pixbuf);
@@ -58,6 +57,7 @@ int surfi_pixbuf_get_width(Pixbuf* pixbuf)
 	return gdk_pixbuf_get_width(pixbuf);
 }
 
-
-
-
+bool surfi_pixbuf_save(Pixbuf* pixbuf, const char* filename, const char* type)
+{
+	return gdk_pixbuf_save(pixbuf, filename, type, NULL, NULL);
+}

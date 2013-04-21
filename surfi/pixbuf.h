@@ -16,3 +16,4 @@ int surfi_pixbuf_get_height(Pixbuf *pixbuf);
 int surfi_pixbuf_get_rowstride(Pixbuf *pixbuf);
 unsigned int surfi_pixbuf_get_byte_length(Pixbuf *pixbuf);
 const char* surfi_pixbuf_get_option(Pixbuf *pixbuf, const char* key);
+bool surfi_pixbuf_save(Pixbuf *pixbuf, const char *filename, const char *type);
