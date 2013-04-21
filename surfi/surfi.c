@@ -9,7 +9,6 @@
 #include <webkit/webkit.h>
 
 #include "surfi/surfi.h"
-#include "surfi/pixbuf.h"
 
 
 static void error(const char *errstr, ...) {
@@ -71,6 +70,11 @@ void surfi_client_set_userptr(SurfiClient *client, void *ptr)
 void* surfi_client_get_userptr(SurfiClient *client)
 {
 	return client->userptr;
+}
+
+Pixbuf* surfi_client_get_pixbuf(SurfiClient* client)
+{
+	return gtk_offscreen_window_get_pixbuf(GTK_OFFSCREEN_WINDOW(client->window));
 }
 
 bool surfi_client_can_copy_clipboard(SurfiClient *client)

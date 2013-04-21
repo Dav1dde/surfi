@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#include "surfi/pixbuf.h"
+
 /*
  * Represents the Surfi Client, holding all relevant
  * information, you should not access the members.
@@ -8,6 +10,7 @@
 typedef struct SurfiClient {
 	GtkWidget *window; // Offscreen window
 	GtkWidget *view; // The webkit widget
+	GtkWidget *scroll;
 
 	void *userptr; // custom user pointer passed to all callbacks
 
@@ -151,6 +154,12 @@ void surfi_client_set_userptr(SurfiClient *client, void *ptr);
  */
 void* surfi_client_get_userptr(SurfiClient *client);
 
+/*
+ * Retrieves a snapshot of the currently rendered page
+ *
+ */
+Pixbuf* surfi_client_get_pixbuf(SurfiClient *client);
+
 
 // http://webkitgtk.org/reference/webkitgtk/stable/webkitgtk-webkitwebview.html
 bool surfi_client_can_copy_clipboard(SurfiClient *client);
@@ -175,7 +184,7 @@ const char* surfi_client_get_encoding(SurfiClient *client);
 WebKitWebFrame* surfi_client_get_focused_frame(SurfiClient *client);
 bool surfi_client_get_full_content_zoom(SurfiClient *client);
 WebKitHitTestResult* surfi_client_get_hit_test_result(SurfiClient *client, GdkEventButton *event);
-GdkPixbuf* surfi_client_get_icon_pixbuf(SurfiClient *client);
+Pixbuf* surfi_client_get_icon_pixbuf(SurfiClient *client);
 const char* surfi_client_get_icon_uri(SurfiClient *client);
 WebKitWebInspector* surfi_client_get_inspector(SurfiClient *client);
 WebKitLoadStatus surfi_client_get_load_status(SurfiClient *client);
@@ -219,7 +228,7 @@ void surfi_client_set_view_mode(SurfiClient *client, WebKitWebViewViewMode mode)
 void surfi_client_set_view_source_mode(SurfiClient *client, bool view_source_mode);
 void surfi_client_set_zoom_level(SurfiClient *client, float zoom_level);
 void surfi_client_stop_loading(SurfiClient *client);
-GdkPixbuf* surfi_client_try_get_favicon_pixbuf(SurfiClient *client, int width, int height);
+Pixbuf* surfi_client_try_get_favicon_pixbuf(SurfiClient *client, int width, int height);
 void surfi_client_undo(SurfiClient *client);
 void surfi_client_unmark_text_matches(SurfiClient *client);
 void surfi_client_zoom_in(SurfiClient *client);

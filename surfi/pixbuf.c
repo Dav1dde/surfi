@@ -55,7 +55,7 @@ int surfi_pixbuf_get_rowstride(Pixbuf* pixbuf)
 
 int surfi_pixbuf_get_width(Pixbuf* pixbuf)
 {
-	return gdk_pixbuf_get_rowstride(pixbuf);
+	return gdk_pixbuf_get_width(pixbuf);
 }
 
 
