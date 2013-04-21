@@ -9,6 +9,7 @@
 #include <webkit/webkit.h>
 
 #include "surfi/surfi.h"
+#include "surfi/pixbuf.h"
 
 
 static void error(const char *errstr, ...) {
@@ -182,7 +183,7 @@ WebKitHitTestResult* surfi_client_get_hit_test_result(SurfiClient *client, GdkEv
 	return webkit_web_view_get_hit_test_result(WEBKIT_WEB_VIEW(client->view), event);
 }
 
-GdkPixbuf* surfi_client_get_icon_pixbuf(SurfiClient *client)
+Pixbuf* surfi_client_get_icon_pixbuf(SurfiClient *client)
 {
 	return webkit_web_view_get_icon_pixbuf(WEBKIT_WEB_VIEW(client->view));
 }
@@ -397,7 +398,7 @@ void surfi_client_stop_loading(SurfiClient *client)
 	return webkit_web_view_stop_loading(WEBKIT_WEB_VIEW(client->view));
 }
 
-GdkPixbuf* surfi_client_try_get_favicon_pixbuf(SurfiClient *client, int width, int height)
+Pixbuf* surfi_client_try_get_favicon_pixbuf(SurfiClient *client, int width, int height)
 {
 	return webkit_web_view_try_get_favicon_pixbuf(WEBKIT_WEB_VIEW(client->view), width, height	);
 }
